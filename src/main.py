@@ -1,4 +1,5 @@
 from nba_api.stats.static import players
+from nba_api.stats.endpoints import playercareerstats
 
 def find_player_id():
     player_name = input("Which player are you looking for? ")
@@ -22,7 +23,15 @@ def find_player_id():
         return None
 
 
+def player_career_stats(player_id):
+    career = playercareerstats.PlayerCareerStats(player_id=player_id)
+    df = career.get_data_frames()[0]  # this is a pandas DataFrame
+
+    # Print all seasons first (just to learn)
+    print(df[['SEASON_ID', 'TEAM_ID', 'PTS', 'AST', 'REB', 'STL', 'BLK', 'FG3M', 'TOV', 'MIN']])
+    return df
             
     
-
-find_player_id()
+player_id = find_player_id()
+if player_id:
+    player_career_stats(player_id)
