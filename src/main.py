@@ -11,6 +11,18 @@ def find_player_id():
     else:
         print("\n Matches found:")
         for p in player_matches:
-            print(p["full_name"])
+            print(f"{p['full_name']} (ID: {p['id']})")
+        
+    try:
+        player_id = int(input("Type Player ID: "))
+        print(f"You selected player with ID: {player_id}")
+        return player_id
+    except ValueError:
+        print("Invalid ID entered.")
+        return None
+
+
+            
+    
 
 find_player_id()
